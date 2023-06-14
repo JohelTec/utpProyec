@@ -1,0 +1,70 @@
+<main class="login container m-auto flex justify-center h-full items-center">
+    <section class="login__container">
+        <div class="mb-8 text-base font-semibold">
+            SRFSMS - Login
+        </div>
+        
+        <mat-tab-group animationDuration="0ms" class="w-full" mat-stretch-tabs="false" [color]="'primary'" >
+            <mat-tab label="Administrador/Investigador">
+                <form [formGroup]="form" class="w-full text-sm" (ngSubmit)="onFormSubmit()">
+                    <section class="text-sm">
+                        <div class="login__input mb-4 mt-8  text-sm">
+                            <ro-input
+                                class="ro-input w-full text-base"
+                                floatLabel="auto"
+                                label="Correo"
+                                appearance="outline"
+                                controlName="email" 
+                                maxlength="150"
+                            >
+                            </ro-input>
+                        </div>
+                        <div class="login__input text-sm">
+                            <ro-input
+                                class="ro-input w-full text-base"
+                                floatLabel="auto"
+                                label="Contraseña"
+                                appearance="outline"
+                                controlName="password" 
+                                maxlength="150"
+                                type="password"
+                            >
+                            </ro-input>
+                        </div>
+                        <div>
+                            <ro-button-raised
+                                color = 'primary'
+                                class = "w-full"
+                                type="submit"
+                                [disabled]="!form.valid"
+                                
+                            >   
+                                <div class="text-lg p-1">
+                                    Ingresar
+                                </div>
+                            </ro-button-raised>
+                        </div>
+                    </section>
+                </form>
+            </mat-tab>
+            <mat-tab label="Usuarios">
+                <section>
+                    <div class=" py-4">
+                        <div
+                            class = "w-full login__btnGoogle"
+                            (click)="loginWithGoole()"
+                        >   
+                            <div class="text-lg p-3 flex justify-center items-center ro-font-white">
+                                Continuar con  &nbsp;
+                                <span class="text-lg font-semibold mr-2">
+                                    Google
+                                </span> 
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </mat-tab>
+        </mat-tab-group>
+            
+    </section>
+</main>

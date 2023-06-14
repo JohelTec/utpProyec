@@ -1,0 +1,62 @@
+<section class="mainEndUser w-full flex justify-center items-center flex-col h-full">
+    <section class="w-3/4">
+        <div class="text-center mb-8 text-2xl font-bold">
+            CORREOS RECIBIDOS
+        </div>
+        <table class="w-full">
+            <tr class="">
+                <th class="text-left mainEndUser__cellpace ro-font-blue">Código</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue">Rol</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue">Example</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue">Example</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue">Analisis</th>
+                
+            </tr>
+            <tr class="mainEndUser__cellpace">
+                <td class="">00001</td>
+                <td class="">Investigador</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="text-2xl mainEndUser__colorSuccess">
+                    <div class="rounded-full">
+                        <mat-icon
+                            [inline]="true"
+                        >
+                            check_circle
+                        </mat-icon> 
+                    </div>
+                </td>
+            </tr>
+            <tr class="mainEndUser__cellpace">
+                <td class="">00002</td>
+                <td class="">Supervisor</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="text-2xl mainEndUser__colorWarning">
+                    <div class="rounded-full">
+                        <mat-icon
+                            [inline]="true"
+                        >
+                            check_circle
+                        </mat-icon> 
+                    </div>
+                </td>
+            </tr>
+            <tr class="mainEndUser__cellpace">
+                <td class="">00003</td>
+                <td class="">Adminstrador</td>
+                <td class="">test</td>
+                <td class="">test</td>
+                <td class="text-2xl mainEndUser__colorWarning mainEndUser__colorError">
+                    <div class="rounded-full">
+                        <mat-icon
+                            [inline]="true"
+                        >
+                            check_circle
+                        </mat-icon> 
+                    </div>
+                </td>
+            </tr>
+        </table>        
+    </section>
+</section>

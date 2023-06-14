@@ -1,0 +1,103 @@
+<section class="mainResearchers w-full flex justify-center items-center flex-col h-full">
+    <section class="w-3/4">
+        <div class="text-center mb-8 text-2xl font-bold">
+            CASOS REPORTADOS
+        </div>
+        <section class="flex justify-between w-full mb-5 items-start">
+            <form [formGroup]="formfilter" class="flex" >
+                <div class="login__input m-2 text-sm">
+                    <ro-input
+                        class="ro-input w-full text-sm"
+                        floatLabel="always"
+                        label="Desde"
+                        appearance="outline"
+                        controlName="from" 
+                        type="date"
+                        maxlength="150"
+                    >
+                    </ro-input>
+                </div>
+                <div class="login__input m-2 text-sm">
+                    <ro-input
+                        class="ro-input w-full text-sm"
+                        floatLabel="always"
+                        label="Hasta"
+                        appearance="outline"
+                        controlName="to" 
+                        type="date"
+                        maxlength="150"
+                    >
+                    </ro-input>
+                </div>
+                <div class="mt-3">
+                    <ro-button-flat
+                        color="primary"
+                        class="w-full"
+                    >
+                    <div class="text-lg my-2 flex items-center">
+                        <mat-icon
+                            [inline]="true"
+                        >
+                            search
+                        </mat-icon> 
+                        <div class="ml-2">
+                            Buscar
+                        </div>
+                        
+                    </div>
+                
+                </ro-button-flat>
+                </div>
+            </form>
+            <div class="h-full pt-3">
+                <ro-button-flat
+                    class="mainResearchers__buttonExcel"
+                    color="accent"
+                    (click)="exportExcel()"
+                >   
+                    <div class="text-sm px-6 py-2 flex items-center">
+                        <span class="mr-2">
+                            <mat-icon 
+                                [inline]="true" 
+                                class="lastDepartaments__icon-user"
+                            >
+                                cloud_download
+                            </mat-icon>
+                        </span>
+                        Exportar
+                    </div>
+                </ro-button-flat>
+            </div>
+            
+        </section>
+        
+        <table class="w-full">
+            <tr class="">
+                <th class="text-left mainResearchers__cellpace ro-font-blue">Código</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue">Rol</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue">Example</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue">Example</th>
+                
+            </tr>
+            <tr class="mainResearchers__cellpace">
+                <td class="">00001</td>
+                <td class="">Investigador</td>
+                <td class="">test</td>
+                <td class="">test</td>
+            </tr>
+            <tr class="mainResearchers__cellpace">
+                <td class="">00002</td>
+                <td class="">Supervisor</td>
+                <td class="">test</td>
+                <td class="">test</td>
+            </tr>
+            <tr class="mainResearchers__cellpace">
+                <td class="">00003</td>
+                <td class="">Adminstrador</td>
+                <td class="">test</td>
+                <td class="">test</td>
+            </tr>
+        </table>        
+    </section>
+</section>
+

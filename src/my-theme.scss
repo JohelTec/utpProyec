@@ -1,0 +1,127 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+
+// GAMA COLORES
+$my-primary-color: (
+  50 : #e3f2fd,
+  100 : #bbdefb,
+  200 : #90caf9,
+  300 : #64b5f6,
+  400 : #42a5f5,
+  500 : #2196f3,
+  600 : #1e88e5,
+  700 : #1976d2,
+  800 : #1565c0,
+  900 : #0d47a1,
+  A100 : #82b1ff,
+  A200 : #448aff,
+  A400 : #2979ff,
+  A700 : #2962ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$my-accent-color: (
+  50 : #e2ecf4,
+  100 : #b6cfe4,
+  200 : #86b0d3,
+  300 : #5590c1,
+  400 : #3078b3,
+  500 : #0c60a6,
+  600 : #0a589e,
+  700 : #084e95,
+  800 : #06448b,
+  900 : #03337b,
+  A100 : #a8c5ff,
+  A200 : #75a3ff,
+  A400 : #4281ff,
+  A700 : #2970ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$my-warn-color: (
+  50 : #ffebee,
+  100 : #ffcdd2,
+  200 : #ef9a9a,
+  300 : #e57373,
+  400 : #ef5350,
+  500 : #f44336,
+  600 : #e53935,
+  700 : #d32f2f,
+  800 : #c62828,
+  900 : #b71c1c,
+  A100 : #ff8a80,
+  A200 : #ff5252,
+  A400 : #ff1744,
+  A700 : #d50000,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #ffffff,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+// PALETA DE COLORES
+$my-palette-primary: mat-palette($my-primary-color);
+$my-palette-accent: mat-palette($my-accent-color);
+$my-palette-warn: mat-palette($my-warn-color);
+
+// TEMA PROPIO
+$my-theme: mat-light-theme((
+ color: (
+   primary: $my-palette-primary,
+   accent: $my-palette-accent,
+   warn: $my-palette-warn
+ )
+));
+
+// APLICAR NUESTRO TEMA A ANGULAR
+@include angular-material-theme($my-theme);
+
+
+// REEMPLAZA EN ANGULAR.JSON -> STYLES
+// "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+// POR LA RUTA DEL CUSTOM THEME
+// "src/assets/styles/my-theme.scss",

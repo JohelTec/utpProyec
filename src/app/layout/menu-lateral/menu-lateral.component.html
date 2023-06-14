@@ -1,0 +1,80 @@
+<section class="px-2 py-3 ro-bg-blue h-full">
+    <section class="menuLateral__logo menuLateral__border-bottom grid grid-flow-col grid-rows-1 lg:grid-rows-1 place-items-center ">
+        <div  (click)="logo()" class="menuLateral__logo-icon text-3xl ro-font-white flex items-center flex-col">
+            <div>SRFSMS</div>
+            <div class="text-base font-thin">
+                {{ user.roleName}}
+            </div>
+            
+        </div>
+    </section>
+    <section class="menuLateral__options flex justify-center mt-3">
+        <section>
+            <figure class="flex justify-center items-center rounded-full ro-bg-white border-black p-3">
+                <img 
+                    class="menuLateral__imgUser" 
+                    src="../../../assets/icon-image/admin.png" 
+                    alt="" 
+                >
+            </figure>
+        </section>
+    </section>
+    <section class="text-base font-thin text-center mt-2 ro-font-white">
+        {{ user.userName}}
+    </section>
+    <section class="mt-4">
+        <ul>
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin')" [class.active]="path == 'admin'" *ngIf="rol === 1">
+                <span class="text-xl mr-2">
+                    <mat-icon
+                        [inline]="true"
+                    >
+                        supervised_user_circle
+                    </mat-icon> 
+                </span>
+                <div>
+                    Usuarios
+                </div>
+                
+            </li>
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/reporteClienteBussiness')" [class.active]="path == 'admin/reporteClienteBussiness'" *ngIf="rol === 1">
+                <span class="text-xl mr-2">
+                    <mat-icon
+                        [inline]="true"
+                    >
+                        recent_actors
+                    </mat-icon> 
+                </span>
+                <div>
+                    Opciones de Rol
+                </div>
+            </li>
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/casesReported')" [class.active]="path == 'admin/casesReported'" *ngIf="rol === 1 || rol !== 1">
+                <span class="text-xl mr-2">
+                    <mat-icon
+                        [inline]="true"
+                    >
+                        equalizer
+                    </mat-icon> 
+                </span>
+                <div>
+                    Casos reportados
+                </div>
+                
+            </li>
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="closeSession()">
+                <span class="text-xl mr-2">
+                    <mat-icon
+                        [inline]="true"
+                    >
+                        power_settings_new
+                    </mat-icon> 
+                </span>
+                <div>
+                    Cerrar Sesion
+                </div>
+                
+            </li>
+        </ul>
+    </section>
+</section>

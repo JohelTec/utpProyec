@@ -1,0 +1,27 @@
+.ro-selext{
+    // border: 1px solid #000 !important;
+    border-radius: 10px;
+    padding: 10px 20px 5px 20px;
+    // min-width: 200px;
+    // max-width: 500px;
+    width: 100%;
+}
+.mat-form-field-wrapper{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.mat-form-field-underline{
+    display: none;
+}
+.mat-form-field-infix{
+    border: none !important;
+}
+mat-select{
+    position: relative;
+   
+}
+.mat-form-field-flex{
+    padding-top: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}

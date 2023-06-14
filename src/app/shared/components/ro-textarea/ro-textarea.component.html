@@ -1,0 +1,19 @@
+
+<!-- <input 
+    class="input"
+    type="text" 
+    [placeholder]="placeholder" 
+    [formControlName]="controlName" 
+> -->
+
+<mat-form-field [appearance]="appearance" [floatLabel]="floatLabel">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <textarea matInput 
+        [placeholder]="placeholder" 
+        [formControlName]="controlName"
+        [maxlength]="maxlength" 
+        [minlength]="minlength"
+    ></textarea>
+</mat-form-field>
+
+  

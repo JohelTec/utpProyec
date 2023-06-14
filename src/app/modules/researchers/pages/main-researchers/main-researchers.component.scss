@@ -1,0 +1,10 @@
+@import 'src/variables.scss';
+
+.mainResearchers{
+    &__cellpace{
+        border-bottom: 2px solid $blue;
+    }
+    &__buttonExcel{
+        background-color: #02723b;
+    }
+}

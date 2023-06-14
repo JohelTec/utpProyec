@@ -1,0 +1,123 @@
+
+<section class="container mx-auto">
+    <section class="text-center text-3xl font-bold mt-8"> 
+        <container-element [ngSwitch]="view">
+            <!-- the same view can be shown in more than one case -->
+            <some-element *ngSwitchCase="'add'">AGREGAR USUARIO</some-element>
+            <some-element *ngSwitchCase="'edit'">EDITAR USUARIO</some-element>
+            <some-element *ngSwitchCase="'detail'">DETALLE DEL USUARIO</some-element>
+        </container-element>
+    </section>
+    <form [formGroup]="formAddUser" (ngSubmit)="onFormSubmit()">
+        <section class="w-full grid grid-cols-3 gap-4 mt-8">
+            <div class="login__input m-2 text-sm">
+                <ro-input
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Nombres *"
+                    appearance="outline"
+                    controlName="name" 
+                    maxlength="150"
+                >
+                </ro-input>
+            </div>
+            <div class="login__input m-2 text-sm">
+                <ro-input
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Apellido Paterno *"
+                    appearance="outline"
+                    controlName="lastName" 
+                    maxlength="150"
+                >
+                </ro-input>
+            </div>
+            <div class="login__input m-2 text-sm">
+                <ro-input
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Apellido Materno *"
+                    appearance="outline"
+                    controlName="secondLastName" 
+                    maxlength="150"
+                >
+                </ro-input>
+            </div>
+            <div class="login__input m-2 text-sm">
+                <ro-select 
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Rol administrativo"
+                    appearance="outline"
+                    controlName="roleId"
+                    [data]="dataArrayRoles"
+                ></ro-select>
+            </div>
+            <div class="login__input m-2 text-sm">
+                <ro-input
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Email *"
+                    appearance="outline"
+                    controlName="email" 
+                    maxlength="150"
+                >
+                </ro-input>
+            </div>
+            <div class="login__input m-2 text-sm">
+                <ro-select 
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Género"
+                    appearance="outline"
+                    controlName="gender"
+                    [data]="dataArrayGender"
+                ></ro-select>
+            </div>
+            <div class="login__input m-2 text-sm">
+                <ro-select 
+                    class="ro-input w-full text-sm"
+                    floatLabel="always"
+                    label="Estado"
+                    appearance="outline"
+                    controlName="isActive"
+                    [data]="dataArrayStatus"
+                    disabled="true"
+                ></ro-select>
+            </div>
+        </section>
+        <section class="w-full mt-4 flex justify-between" *ngIf="view != 'detail'">
+            <ro-button-stroked
+                color= 'primary'
+                class="m-2"
+                (click)="cancel()"
+            >   
+                <div class="text-sm px-6 py-2">
+                    Cancelar
+                </div>
+            </ro-button-stroked>
+            <ro-button-flat
+                color= 'primary'
+                class="m-2"
+                type= "submit"
+                *ngIf="view === 'add'"
+                [disabled]="!formAddUser.valid"
+            >   
+                <div class="text-sm px-6 py-2">
+                    Agregar
+                </div>
+            </ro-button-flat>
+            <ro-button-flat
+                color= 'primary'
+                class="m-2"
+                type= "submit"
+                *ngIf="view === 'edit'"
+            >   
+                <div class="text-sm px-6 py-2">
+                    Editar
+                </div>
+            </ro-button-flat>
+           
+        </section>
+    </form>
+</section>

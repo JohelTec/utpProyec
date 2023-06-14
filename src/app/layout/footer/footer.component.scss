@@ -1,0 +1,107 @@
+
+ul li{
+    list-style: none;
+}
+.footer {
+    background-color: #0A0844;
+    color: #fff;
+    margin-top: auto;
+    &__title {
+        font-weight: 600;
+        text-transform: uppercase;
+        transform: scaleY(1.2);
+        transform-origin: 0 0;
+        margin-bottom: 5px;
+    }
+    &__subtitle{
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+    &__container{
+        width: 100%;
+        display: grid;
+        grid-template: 
+            "footer__item-title auto auto" 
+            "footer__item-1 footer__item-2 footer__item-3"   /
+            auto auto auto
+        ;
+    }
+    &__item-title{
+        grid-column-start: 1;
+        grid-column: 1 / 4;
+        width: 100%;
+        display: grid;
+        justify-items: start;
+    }
+    &__item-1{
+        width: 100%;
+        display: grid;
+        justify-items: start;
+    }
+    &__item-2{
+        width: 100%;
+        display: grid;
+        justify-items: center;
+    }
+    &__item-3{
+        width: 100%;
+        display: grid;
+        justify-items: end;
+    }
+    &__cell{
+        padding: 10px 0;
+        font-weight: 300;
+    }
+    &__title-active{
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    &__title-social{
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    &_container-icon{
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        &__container{
+            width: 100%;
+            display: grid;
+            grid-template: 
+                "footer__item-title" 
+                "footer__item-1" 
+                "footer__item-2"  
+                "footer__item-3"  /
+                1fr; 
+            ;
+            grid-template-rows: auto 1fr 1fr 1fr;
+            justify-items: center;
+        }
+        &__item-title{
+            grid-column-start: 1;
+            grid-column: 1 ;
+            width: 100%;
+            display: grid;
+            justify-items: start;
+        }
+        &__item-1{
+            width: 100%;
+            display: grid;
+            justify-items: start;
+        }
+        &__item-2{
+            width: 100%;
+            display: grid;
+            justify-items: start;
+        }
+        &__item-3{
+            width: 100%;
+            display: grid;
+            justify-items: start;
+        }
+    
+    }
+}

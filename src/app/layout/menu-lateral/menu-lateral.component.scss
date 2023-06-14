@@ -1,0 +1,14 @@
+@import 'src/variables.scss';
+
+.menuLateral{
+    &__logo{
+
+    }
+    &__option:hover{
+        cursor: pointer;
+    }
+}
+
+.active{
+    background-color: $purple;
+}

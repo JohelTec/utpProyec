@@ -1,0 +1,128 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import "variables.scss";
+
+.row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.mat-dialog-container {
+    border-radius: 10px !important;
+}
+
+// @font-face {
+//     font-family: Solano Gothic;
+//     src: url(assets/sfPro/SFPRODISPLAYREGULAR.OTF) format("opentype");
+// }
+
+*{
+    font-family: 'Roboto';
+}
+
+
+
+.ro-bg-purple {
+    background-color: $primary;
+} 
+
+.ro-bg-blue {
+    background-color: $accent;
+} 
+
+.ro-bg-warn {
+    background-color: $warn;
+}
+
+.ro-bg-white {
+    background-color: #fff;
+}
+
+.ro-bg-black {
+    background-color: #000;
+}
+
+.ro-bg-grey {
+    background-color: #cccfd2 ; 
+}
+
+.ro-bg-red {
+    background-color: #fd5765;
+}
+
+.ro-bg-green {
+    background-color: #3cb878;
+}
+
+.ro-bg-yellow {
+    background-color: #e7b110;
+}
+
+.ro-font-purple {
+    color:  $primary;
+}
+
+.ro-font-blue {
+    color:  $accent;
+}
+
+.ro-font-white {
+    color: #fff;
+}
+
+.ro-font-black {
+    color: #000;
+}
+
+.ro-font-red {
+    color: #fd5765;
+}
+
+.ro-font-green {
+    color: #3cb878;
+}
+
+.ro-font-yellow {
+    color: #e7b110;
+}
+
+.ro-font-grey {
+    color: #cccfd2;
+}
+
+
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: blue;
+}
+
+.mat-radio-outer-circle{
+    background-color: white ;
+}
+
+// $colors: ("white": #fff, "black": #000, "gray": #999999);
+
+// @for $size from 12 through 92 {
+//     .fsize-#{$size} {
+//         font-size: $size + px !important;
+//     }
+// }
+
+// @each $name, $color in $colors {
+//     .bcolor-#{$name}{
+//         background-color: $color;
+//     }
+// }
+// @each $name, $color in $colors {
+//     .fcolor-#{$name}{
+//         color: $color;
+//     }
+// }
+

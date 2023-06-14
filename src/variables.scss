@@ -1,0 +1,21 @@
+
+@import 'src/my-theme.scss';
+
+// Copy the palettes from your selected theme (usually theme.scss).
+$app-primary: mat-palette($my-primary-color);
+$app-accent:  mat-palette($my-accent-color);
+$app-warn:    mat-palette($my-warn-color);
+
+// Create your Sass color vars (will be available in all the project)
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
+
+$purple: $primary;
+$blue: $accent;
+$white: #fff;
+
+$sm: 'min-width: 640px';
+$md: 'min-width: 768px';
+$lg: 'min-width: 1024px';
+$xl: 'min-width: 1280px';

@@ -1,0 +1,19 @@
+@import 'src/variables.scss';
+
+.mainEndUser{
+    &__cellpace{
+        border-bottom: 2px solid $blue;
+    }
+    &__buttonExcel{
+        background-color: #02723b;
+    }
+    &__colorSuccess{
+        color: #20aa22;
+    }
+    &__colorWarning{
+        color: #f5d133;
+    }
+    &__colorError{
+        color: #f70000;
+    }
+}
