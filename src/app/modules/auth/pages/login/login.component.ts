@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       })
     ).subscribe(resp => {
       // this.initSession();
-      this.authService.setSesionStorage('userData', JSON.stringify(resp))
+      this.authService.setSesionStorage('dataUser', JSON.stringify(resp))
       this.router.navigateByUrl('user')
     });
   }

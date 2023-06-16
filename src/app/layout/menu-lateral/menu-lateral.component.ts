@@ -31,12 +31,11 @@ export class MenuLateralComponent implements OnInit {
   }
 
   initRol(){
-    const dataUser = this.authService.getSesionStorage('userData');
+    const dataUser = this.authService.getSesionStorage('dataUser');
     if(dataUser !== null){
       this.user = JSON.parse(dataUser);
       if(this.user && this.user.roleName && this.user.roleName === 'Administrador') this.rol = 1;
       else{
-        
         if(this.user && this.user.refresh_token){
           console.log("this.user.refresh_token")
           this.rol = 3

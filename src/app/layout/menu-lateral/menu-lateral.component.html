@@ -49,7 +49,7 @@
                     Opciones de Rol
                 </div>
             </li>
-            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/casesReported')" [class.active]="path == 'user'" *ngIf="rol === 2">
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/casesReported')" [class.active]="path == 'admin/casesReported'" *ngIf="rol ===1 || rol === 2">
                 <span class="text-xl mr-2">
                     <mat-icon
                         [inline]="true"
