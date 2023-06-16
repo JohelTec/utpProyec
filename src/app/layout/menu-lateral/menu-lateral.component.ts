@@ -6,7 +6,8 @@ import { AuthService } from '@app/shared/services/auth.service';
 interface user {
   email: string
   id: string
-  roleName: string
+  roleName?: string
+  refresh_token?: string
   token: string
   userName : string
 }
@@ -30,10 +31,20 @@ export class MenuLateralComponent implements OnInit {
   }
 
   initRol(){
-    const dataUser = this.authService.getSesionStorage('dataUser');
+    const dataUser = this.authService.getSesionStorage('userData');
     if(dataUser !== null){
       this.user = JSON.parse(dataUser);
-      this.rol = rols.find( item => item.name ==  this.user.roleName).key
+      if(this.user && this.user.roleName && this.user.roleName === 'Administrador') this.rol = 1;
+      else{
+        
+        if(this.user && this.user.refresh_token){
+          console.log("this.user.refresh_token")
+          this.rol = 3
+        }else {
+          this.rol = 2
+        }
+        
+      };
     }
   }
 

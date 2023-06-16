@@ -3,7 +3,7 @@
         <div  (click)="logo()" class="menuLateral__logo-icon text-3xl ro-font-white flex items-center flex-col">
             <div>SRFSMS</div>
             <div class="text-base font-thin">
-                {{ user.roleName}}
+                {{ user?.roleName || 'Usuario'}}
             </div>
             
         </div>
@@ -20,7 +20,7 @@
         </section>
     </section>
     <section class="text-base font-thin text-center mt-2 ro-font-white">
-        {{ user.userName}}
+        {{ user?.userName || 'Usuario comun'}}
     </section>
     <section class="mt-4">
         <ul>
@@ -49,7 +49,7 @@
                     Opciones de Rol
                 </div>
             </li>
-            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/casesReported')" [class.active]="path == 'admin/casesReported'" *ngIf="rol === 1 || rol !== 1">
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/casesReported')" [class.active]="path == 'user'" *ngIf="rol === 2">
                 <span class="text-xl mr-2">
                     <mat-icon
                         [inline]="true"
@@ -59,6 +59,19 @@
                 </span>
                 <div>
                     Casos reportados
+                </div>
+                
+            </li>
+            <li class="p-3 menuLateral__option ro-font-white flex justify-start items-center" (click)="goto('admin/casesReported')" [class.active]="path == '/user'" *ngIf="rol === 3">
+                <span class="text-xl mr-2">
+                    <mat-icon
+                        [inline]="true"
+                    >
+                        mail
+                    </mat-icon> 
+                </span>
+                <div>
+                    Buzon de correos
                 </div>
                 
             </li>

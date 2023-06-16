@@ -8,7 +8,7 @@
             <mat-tab label="Administrador/Investigador">
                 <form [formGroup]="form" class="w-full text-sm" (ngSubmit)="onFormSubmit()">
                     <section class="text-sm">
-                        <div class="login__input mb-4 mt-8  text-sm">
+                        <div class="login__input mb-4 mt-8 text-sm">
                             <ro-input
                                 class="ro-input w-full text-base"
                                 floatLabel="auto"
@@ -48,11 +48,11 @@
                 </form>
             </mat-tab>
             <mat-tab label="Usuarios">
-                <section>
+                <form [formGroup]="formGoogle" class="w-full text-sm">
                     <div class=" py-4">
                         <div
                             class = "w-full login__btnGoogle"
-                            (click)="loginWithGoole()"
+                            (click)="loginWithGoogle()"
                         >   
                             <div class="text-lg p-3 flex justify-center items-center ro-font-white">
                                 Continuar con  &nbsp;
@@ -61,8 +61,11 @@
                                 </span> 
                             </div>
                         </div>
+                        <div class="flex justify-center pt-2 w-full">
+                            <ro-checkbox color="primary"  controlName="acceptTandC" >Acepto los TyC y las políticas de privacidad</ro-checkbox>
+                        </div>
                     </div>
-                </section>
+                </form>
             </mat-tab>
         </mat-tab-group>
             

@@ -18,6 +18,7 @@ import { modalErrorComponent } from '@modals/error/modal.error.component';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  formGoogle: FormGroup;
   user: SocialUser;
   loggedIn: boolean;
   socialUser: any;
@@ -53,12 +54,16 @@ export class LoginComponent implements OnInit {
       filter( resp => resp.isSuccess),
       map( resp => resp.data ),
       catchError(() => {
-        this.openModalError('Error vuelva a intentarlo');
+        this.openModalError({
+          type: 'error',
+          message: 'Credencailes incorrectas'
+        });
         return EMPTY;
       })
     ).subscribe(resp => {
-      this.initSession();
-      console.log("resp", resp)
+      // this.initSession();
+      this.authService.setSesionStorage('userData', JSON.stringify(resp))
+      this.router.navigateByUrl('user')
     });
   }
 
@@ -67,7 +72,10 @@ export class LoginComponent implements OnInit {
       filter( resp => resp.isSuccess),
       map( resp => resp.data ),
       catchError(() => {
-        this.openModalError('Error vuelva a intentarlo');
+        this.openModalError({
+          type: 'error',
+          message: 'Credencailes incorrectas'
+        });
         return EMPTY;
       })
     ).subscribe(resp => {
@@ -77,14 +85,22 @@ export class LoginComponent implements OnInit {
 
   initForm(){
     this.form = new FormGroup({
-        email: new FormControl('', [
-          Validators.required, Validators.email
-        ]),
-        password: new FormControl('', [
-          Validators.required
-        ]),
+      email: new FormControl('', [
+        Validators.required, Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required
+      ]),
     });
+    
+    this.formGoogle = new FormGroup({
+      acceptTandC: new FormControl('', [
+        Validators.requiredTrue
+      ])
+    })
   }
+
+  
 
   login(){
     
@@ -101,7 +117,10 @@ export class LoginComponent implements OnInit {
       filter( resp => resp.isSuccess === true),
       map( resp => resp.data ),
       catchError(() => {
-        this.openModalError();
+        this.openModalError({
+          type: 'error',
+          message: 'Credencailes incorrectas'
+        });
         return EMPTY;
       })
     ).subscribe(data => {
@@ -114,29 +133,40 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  openModalError(message= 'Credencailes incorrectas'): void {
+  onFormSubmitformGoogle(){
+    console.log("formGoogle", this.formGoogle.value)
+  }
+
+  openModalError({type, message}): void {
     const dialogRef = this.dialog.open(modalErrorComponent, {
       data: {
-        type: 'error',
+        type: type,
         description: message
       },
       minWidth: 400
     });
   }
   
-  loginWithGoole() {
-    this.authService.outh2().pipe(
+  loginWithGoogle() {
+    console.log("formGoogle", this.formGoogle.valid)
+    if(!this.formGoogle.valid){
+      this.openModalError({type : 'info', message: 'Acepta los términos y condiciones'})
+    } else {
+      this.authService.outh2().pipe(
       filter( resp => resp.isSuccess === true),
       map( resp => resp.data ),
       catchError(() => {
-        this.openModalError();
+        this.openModalError({
+          type: 'error',
+          message: 'Credencailes incorrectas'
+        });
         return EMPTY;
       })
-    ).subscribe(resp => {
-      const windowFeatures = "left=100,top=100,width=320,height=320";
-      let params = `titlebar=yes,toolbar=yes,location=yes,status=no,menubar=yes,scrollbars=yes,resizable=yes,width=700,Height=300,left=0,top=0`;
-      window.open(resp, windowFeatures);
-    });
+      ).subscribe(resp => {
+        let reference = window.open(resp, "_parent", '');
+      });
+    }
+    
   }
 
 }
