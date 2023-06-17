@@ -70,8 +70,8 @@ export class DetailUserComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       roleId: new FormControl('842b6718-ea49-49ee-a24b-c59befad804c', Validators.required),
       email: new FormControl('',  [
+        Validators.email,
         Validators.required, 
-        Validators.email
       ]),
       isActive: new FormControl(true, Validators.required),
       gender: new FormControl(1, Validators.required),
@@ -193,5 +193,13 @@ export class DetailUserComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  getErrorMessage() {
+    if (this.formAddUser.get('name').hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.formAddUser.get('name').hasError('email') ? 'Not a valid email' : '';
   }
 }

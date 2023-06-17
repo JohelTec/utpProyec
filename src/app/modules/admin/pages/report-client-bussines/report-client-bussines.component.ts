@@ -96,6 +96,11 @@ export class ReportClientBussinesComponent implements OnInit {
   }
 
   showInputBtn(){
+    
+    if(this.idInputEdit){
+      return;
+    }
+    this.formAddReportClient.reset()
     this.showInput = !this.showInput
   }
 

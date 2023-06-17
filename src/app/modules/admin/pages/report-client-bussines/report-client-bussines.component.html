@@ -10,7 +10,7 @@
             </tr>
             <tr class="reportClientBussines__cellpace" *ngFor="let rol of listRoles">
                 <td class="">
-                    <div *ngIf="idInputEdit === rol.id ; else templateA" class="pt-3">
+                    <div *ngIf="idInputEdit === rol.id ; else templateA" class="py-3">
                         <ro-input
                             class="w-full text-sm"
                             appearance="fill"
@@ -19,12 +19,11 @@
                             placeholder="Rol"
                         >
                         </ro-input>
+                        <mat-error class="text-xs font-medium mb-2" *ngIf="formAddReportClient.get('name').hasError('required') && formAddReportClient.get('name').touched">Nombre del rol es requerido</mat-error>
                     </div>
                     <ng-template #templateA>
                         {{ rol.name }}
                     </ng-template>
-
-                    
                 </td>
                 <td class=" text-base flex justify-center items-center ro-font-blue ">
                     <div class="flex flex-row h-full">
@@ -53,7 +52,7 @@
         </table>
         <div class="reportClientBussines__input text-sm mt-4" *ngIf="showInput">
             <ro-input
-                class="ro-input w-full text-sm 0-0"
+                class="ro-input w-full text-sm"
                 floatLabel="always"
                 label="Nombre del nuevo rol"
                 appearance="outline"
@@ -61,6 +60,7 @@
                 maxlength="150"
             >
             </ro-input>
+            <mat-error class="text-xs font-medium mb-2" *ngIf="formAddReportClient.get('name').hasError('required') && formAddReportClient.get('name').touched">Nombre del rol es requerido</mat-error>
         </div>
         <section class="w-full py-3">
             <ro-button-stroked

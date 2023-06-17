@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CheckboxRequiredValidator, Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { filter, map, catchError  } from 'rxjs/operators';
 import { EMPTY, of, throwError } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
     });
     
     this.formGoogle = new FormGroup({
-      acceptTandC: new FormControl('', [
+      acceptTandC: new FormControl(false, [
         Validators.requiredTrue
       ])
     })
@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit {
   loginWithGoogle() {
     console.log("formGoogle", this.formGoogle.valid)
     if(!this.formGoogle.valid){
-      this.openModalError({type : 'info', message: 'Acepta los términos y condiciones'})
+      this.openModalError({type : 'error', message: 'Acepta los términos y condiciones'})
     } else {
       this.authService.outh2().pipe(
       filter( resp => resp.isSuccess === true),

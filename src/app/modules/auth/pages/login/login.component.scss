@@ -14,6 +14,9 @@
         background-color: red;
         border-radius: 10px;
     }
+    &__login__red{
+        border: 1px solid red;
+    }
     
     // height: 100vh;
     // &__container{
@@ -34,6 +37,10 @@
 //     margin: 0;
 //     padding: 0;
 // }
+
+.custom-color-primary .mat-checkbox-frame {
+    border-color: red;
+}
 @media only screen and (max-width: 600px) {
     .login{
         height: 100%;

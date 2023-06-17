@@ -20,6 +20,7 @@
                     maxlength="150"
                 >
                 </ro-input>
+                <mat-error class="text-xs font-medium" *ngIf="formAddUser.get('name').hasError('required') && formAddUser.get('name').touched">Su nombre es requerido</mat-error>
             </div>
             <div class="login__input m-2 text-sm">
                 <ro-input
@@ -31,6 +32,7 @@
                     maxlength="150"
                 >
                 </ro-input>
+                <mat-error class="text-xs font-medium" *ngIf="formAddUser.get('lastName').hasError('required') && formAddUser.get('lastName').touched">Su apellido parterno es requerido</mat-error>
             </div>
             <div class="login__input m-2 text-sm">
                 <ro-input
@@ -42,6 +44,7 @@
                     maxlength="150"
                 >
                 </ro-input>
+                <mat-error class="text-xs font-medium" *ngIf="formAddUser.get('secondLastName').hasError('required') && formAddUser.get('secondLastName').touched">Su apellido materno es requerido</mat-error>
             </div>
             <div class="login__input m-2 text-sm">
                 <ro-select 
@@ -63,6 +66,8 @@
                     maxlength="150"
                 >
                 </ro-input>
+                <mat-error class="text-xs font-medium" *ngIf="formAddUser.get('email').hasError('required') && formAddUser.get('email').touched">Ingrese un email</mat-error>
+                <mat-error class="text-xs font-medium" *ngIf="formAddUser.get('email').errors?.email && formAddUser.get('email').touched">Ingrese un email valido</mat-error>
             </div>
             <div class="login__input m-2 text-sm">
                 <ro-select 
@@ -112,6 +117,7 @@
                 class="m-2"
                 type= "submit"
                 *ngIf="view === 'edit'"
+                [disabled]="!formAddUser.valid"
             >   
                 <div class="text-sm px-6 py-2">
                     Editar

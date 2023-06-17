@@ -61,9 +61,14 @@
                                 </span> 
                             </div>
                         </div>
-                        <div class="flex justify-center pt-2 w-full">
-                            <ro-checkbox color="primary"  controlName="acceptTandC" >Acepto los TyC y las políticas de privacidad</ro-checkbox>
+                        <div class="flex justify-center flex-col items-center pt-2 w-full">
+                            <div>
+                                <ro-checkbox color="primary"  controlName="acceptTandC"  [class.custom-color-primary]="!formGoogle.get('acceptTandC').valid && formGoogle.get('acceptTandC').touched">Acepto los TyC y las políticas de privacidad</ro-checkbox>
+                                <mat-error class="text-xs font-medium" *ngIf="!formGoogle.get('acceptTandC').valid && formGoogle.get('acceptTandC').touched">Aceptar términos y condiciones</mat-error>
+                            </div>
+                            
                         </div>
+                        
                     </div>
                 </form>
             </mat-tab>

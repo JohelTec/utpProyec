@@ -2,6 +2,8 @@
     [formControlName]="controlName"
     [checked]="allComplete"
     [color]="color"
-    (ngModelChange)="updateAllComplete()">
+    (ngModelChange)="updateAllComplete()"
+    [class]="class"
+    >
     <ng-content></ng-content>
 </mat-checkbox>

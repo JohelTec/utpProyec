@@ -18,7 +18,7 @@ import { Validators, FormControl, FormGroup , Validator, FormGroupDirective, Con
 
 export class RoInputComponent implements OnInit {
 
-    @Input() public controlName:string;
+    @Input() public controlName:FormControl;
     @Input() public placeholder:string = "";
     @Input() public value:string;
     @Input() public appearance:string;
@@ -34,6 +34,13 @@ export class RoInputComponent implements OnInit {
     }
 
     ngOnInit(){
+    }
 
+    getErrorMessage() {
+      if (this.controlName.hasError('required')) {
+        return 'You must enter a value';
+      }
+  
+      return this.controlName.hasError('email') ? 'Not a valid email' : '';
     }
 }

@@ -30,6 +30,7 @@ export class RoCheckboxComponent implements OnInit {
     @Input() controlName:string;
     @Input() allComplete:boolean = false;
     @Input() color: 'primary' |'accent'| 'warn' = 'primary';
+    @Input() class: string ="";
 
     ngOnInit() {
     }
