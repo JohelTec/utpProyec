@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   initSession(){
-    this.authService.getSession('uexternalapp@gmail.com', 10).pipe(
+    this.authService.getEmails('uexternalapp@gmail.com', 10).pipe(
       filter( resp => resp.isSuccess),
       map( resp => resp.data ),
       catchError(() => {

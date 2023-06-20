@@ -57,8 +57,15 @@ export class AuthService {
     );
   }
 
-  getSession(email, maxResults) : Observable<any> {
+  getEmails(email, maxResults) : Observable<any> {
     return this.http.post<any>(environment.uri + `/api/Email/Gmail/inbox/${email}/maxResults/${maxResults}/messages/refresh/true`, {})
+    .pipe(
+      map( res => res )
+    );
+  }
+
+  reportedCases(body) : Observable<any> {
+    return this.http.post<any>(environment.uri + `/api/Email/Gmail/inbox/messages/filter/date`, body)
     .pipe(
       map( res => res )
     );

@@ -30,6 +30,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 const materialModules = [
   CdkTreeModule,
@@ -63,7 +66,9 @@ const materialModules = [
   MatSlideToggleModule,
   MatSliderModule,
   MatDialogModule,
-  MatRadioModule
+  MatRadioModule,
+  MatNativeDateModule,
+  MatDatepickerModule
 ];
 
 import { CommonModule } from '@angular/common';

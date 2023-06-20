@@ -5,55 +5,62 @@
         </div>
         <table class="w-full">
             <tr class="">
-                <th class="text-left mainEndUser__cellpace ro-font-blue">Código</th>
-                <th class="text-left mainEndUser__cellpace ro-font-blue">Rol</th>
-                <th class="text-left mainEndUser__cellpace ro-font-blue">Example</th>
-                <th class="text-left mainEndUser__cellpace ro-font-blue">Example</th>
-                <th class="text-left mainEndUser__cellpace ro-font-blue">Analisis</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Código</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Asunto</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Emisor</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Receptor</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Mensaje</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Analisis</th>
+                <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Acciones</th>
                 
             </tr>
-            <tr class="mainEndUser__cellpace">
-                <td class="">00001</td>
-                <td class="">Investigador</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="text-2xl mainEndUser__colorSuccess">
-                    <div class="rounded-full">
+            <tr class="mainEndUser__cellpace" *ngFor="let email of dataEmails" >
+                <td class="p-2">{{ email.historyId }}</td>
+                <td class="p-2">{{ email.subject }}</td>
+                <td class="p-2">{{ email.from }}</td>
+                <td class="p-2">{{ email.to }}</td>
+                <td class="p-2">{{ email.snippet }}</td>
+                <td class="text-2xl p-2">
+                    <div class="rounded-full mainEndUser__color{{ getStatusEmail(email) }}" [ngSwitch]="getStatusEmail(email)">
                         <mat-icon
                             [inline]="true"
+                            *ngSwitchCase="'Success'"
                         >
                             check_circle
+                        </mat-icon> 
+                        <mat-icon
+                            [inline]="true"
+                            *ngSwitchCase="'Warning'"
+                        >
+                            error
+                        </mat-icon> 
+                        <mat-icon
+                            [inline]="true"
+                            *ngSwitchCase="'Error'"
+                        >
+                            cancel
                         </mat-icon> 
                     </div>
                 </td>
-            </tr>
-            <tr class="mainEndUser__cellpace">
-                <td class="">00002</td>
-                <td class="">Supervisor</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="text-2xl mainEndUser__colorWarning">
-                    <div class="rounded-full">
-                        <mat-icon
-                            [inline]="true"
-                        >
-                            check_circle
-                        </mat-icon> 
-                    </div>
-                </td>
-            </tr>
-            <tr class="mainEndUser__cellpace">
-                <td class="">00003</td>
-                <td class="">Adminstrador</td>
-                <td class="">test</td>
-                <td class="">test</td>
-                <td class="text-2xl mainEndUser__colorWarning mainEndUser__colorError">
-                    <div class="rounded-full">
-                        <mat-icon
-                            [inline]="true"
-                        >
-                            check_circle
-                        </mat-icon> 
+                <td class="p-2">
+                    <div class="flex justify-center items-center flex-col">
+                        <ng-container *ngIf="getStatusEmail(email) === 'Warning'">
+                            <ro-button-raised
+                                color="accent"
+                                class="mb-2"
+                                (click)="editaruser(employee)"
+                            >
+                                Analizar
+                            </ro-button-raised>
+                        </ng-container>
+                        <ng-container *ngIf="getStatusEmail(email) === 'Error'">
+                            <ro-button-raised
+                                color="warn"
+                                (click)="editaruser(employee)"
+                            >
+                                Eliminar
+                            </ro-button-raised>
+                        </ng-container>
                     </div>
                 </td>
             </tr>

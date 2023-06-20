@@ -4,8 +4,8 @@
             CASOS REPORTADOS
         </div>
         <section class="flex justify-between w-full mb-5 items-start">
-            <form [formGroup]="formfilter" class="flex" >
-                <div class="login__input m-2 text-sm">
+            <form [formGroup]="formfilter" (ngSubmit)="onFormSubmit()" class="flex" >
+                <!-- <div class="login__input m-2 text-sm">
                     <ro-input
                         class="ro-input w-full text-sm"
                         floatLabel="always"
@@ -28,25 +28,42 @@
                         maxlength="150"
                     >
                     </ro-input>
+                </div> -->
+                <div class="login__input m-2 text-sm">
+                    <mat-form-field appearance="outline" floatLabel="always">
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [formGroup]="formfilter" [rangePicker]="picker">
+                          <input matStartDate formControlName="from" placeholder="Start date">
+                          <input matEndDate formControlName="to" placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+    
+                        <mat-error *ngIf="formfilter.get('from').hasError('required')">Ingrese la fecha inicial</mat-error>
+                        <mat-error *ngIf="formfilter.get('to').hasError('required')">Ingrese la fecha final</mat-error>
+                    </mat-form-field>
                 </div>
+                
                 <div class="mt-3">
                     <ro-button-flat
                         color="primary"
                         class="w-full"
+                        type="submit"
                     >
-                    <div class="text-lg my-2 flex items-center">
-                        <mat-icon
-                            [inline]="true"
-                        >
-                            search
-                        </mat-icon> 
-                        <div class="ml-2">
-                            Buscar
+                        <div class="text-lg my-2 flex items-center">
+                            <mat-icon
+                                [inline]="true"
+                            >
+                                search
+                            </mat-icon> 
+                            <div class="ml-2">
+                                Buscar
+                            </div>
+                            
                         </div>
-                        
-                    </div>
-                
-                </ro-button-flat>
+                    
+                    </ro-button-flat>
                 </div>
             </form>
             <div class="h-full pt-3">
@@ -73,29 +90,18 @@
         
         <table class="w-full">
             <tr class="">
-                <th class="text-left mainResearchers__cellpace ro-font-blue">Código</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue">Rol</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue">Example</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue">Example</th>
-                
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Código</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Emisor</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Receptor</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Asunto</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Mensaje</th>
             </tr>
-            <tr class="mainResearchers__cellpace">
-                <td class="">00001</td>
-                <td class="">Investigador</td>
-                <td class="">test</td>
-                <td class="">test</td>
-            </tr>
-            <tr class="mainResearchers__cellpace">
-                <td class="">00002</td>
-                <td class="">Supervisor</td>
-                <td class="">test</td>
-                <td class="">test</td>
-            </tr>
-            <tr class="mainResearchers__cellpace">
-                <td class="">00003</td>
-                <td class="">Adminstrador</td>
-                <td class="">test</td>
-                <td class="">test</td>
+            <tr class="mainResearchers__cellpace" *ngFor="let email of dataReport">
+                <td class="p-2">{{ email.historyId }}</td>
+                <td class="p-2">{{ email.from }}</td>
+                <td class="p-2">{{ email.to }}</td>
+                <td class="p-2">{{ email.subject }}</td>
+                <td class="p-2">{{ email.snippet }}</td>
             </tr>
         </table>        
     </section>
