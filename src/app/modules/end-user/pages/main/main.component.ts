@@ -11,6 +11,7 @@ import { EMPTY } from 'rxjs';
 })
 export class MainComponent implements OnInit {
   dataEmails: any = [];
+  showSpinner = true;
   constructor(
     private readonly authService: AuthService,
     public dialog: MatDialog,
@@ -25,6 +26,7 @@ export class MainComponent implements OnInit {
   }
 
   getEmails() {
+    this.showSpinner = false;
     this.authService.getEmails('uexternalapp@gmail.com', 10).pipe(
       filter( resp => resp.isSuccess),
       map( resp => resp.data ),
@@ -39,8 +41,11 @@ export class MainComponent implements OnInit {
       this.dataEmails=resp;
       this.dataEmails[0].isAnalyzed = true;
       this.dataEmails[0].isPhishing = true;
+      // this.dataEmails[0].isDeletedMessage = true;
       this.dataEmails[1].isAnalyzed = true;
       this.dataEmails[1].isPhishing = false;
+      this.showSpinner = true;
+      console.log("this.dataEmails", this.dataEmails)
     });
   }
 
@@ -55,14 +60,61 @@ export class MainComponent implements OnInit {
   }
 
   getStatusEmail(email){
-    const status = ['Success','Warning', 'Error'];
-    if(email && !email.isAnalyzed && !email.isPhishing){
+    const status = ['Success','Warning', 'Error', 'Delete'];
+    if(email && !email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
+      console.log("status[1]")
       return status[1];
-    } else if(email && email.isAnalyzed && !email.isPhishing){
+    } else if(email && email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
       return status[0];
+    } else if(email.isDeletedMessage){
+      return status[3];
     } else {
       return status[2];
     }
+  }
+
+  analyzeEmail(email){
+    const body = {
+      email: 'uexternalapp@gmail.com',
+      messageId: email.messageId
+    };
+    this.authService.analizeEmail(body).pipe(
+      filter( resp => resp.isSuccess),
+      catchError(() => {
+        this.openModalError({
+          type: 'error',
+          message: 'Vuelve a intentarlo'
+        });
+        return EMPTY;
+      })
+    ).subscribe(resp => {
+      
+      this.openModalError({
+        type: 'success',
+        message: 'Se ha analizado el correo exitosamente'
+      });
+      this.getEmails();
+    });
+  }
+
+  removeEmail(email){
+    this.authService.removeEmail('uexternalapp@gmail.com', email.messageId).pipe(
+      filter( resp => resp.isSuccess),
+      catchError(() => {
+        this.openModalError({
+          type: 'error',
+          message: 'Vuelve a intentarlo'
+        });
+        return EMPTY;
+      })
+    ).subscribe(resp => {
+      
+      this.openModalError({
+        type: 'success',
+        message: 'Se ha elminado el correo exitosamente'
+      });
+      this.getEmails();
+    });
   }
 
 }

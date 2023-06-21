@@ -3,7 +3,7 @@
         <div class="text-center mb-8 text-2xl font-bold">
             CORREOS RECIBIDOS
         </div>
-        <table class="w-full">
+        <table class="w-full" *ngIf="showSpinner; else blockSppiner">
             <tr class="">
                 <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Código</th>
                 <th class="text-left mainEndUser__cellpace ro-font-blue p-2">Asunto</th>
@@ -25,21 +25,34 @@
                         <mat-icon
                             [inline]="true"
                             *ngSwitchCase="'Success'"
+                            class="cursor-pointer"
+                            matTooltip="Leible"
                         >
                             check_circle
                         </mat-icon> 
                         <mat-icon
                             [inline]="true"
                             *ngSwitchCase="'Warning'"
+                            class="cursor-pointer"
+                            matTooltip="Pendiente"
                         >
                             error
                         </mat-icon> 
                         <mat-icon
                             [inline]="true"
                             *ngSwitchCase="'Error'"
+                            class="cursor-pointer"
+                            matTooltip="Phishing"
                         >
                             cancel
                         </mat-icon> 
+                        <mat-icon
+                            [inline]="true"
+                            *ngSwitchCase="'Delete'"
+                        >
+                            cancel
+                        </mat-icon>
+                        
                     </div>
                 </td>
                 <td class="p-2">
@@ -48,7 +61,7 @@
                             <ro-button-raised
                                 color="accent"
                                 class="mb-2"
-                                (click)="editaruser(employee)"
+                                (click)="analyzeEmail(email)"
                             >
                                 Analizar
                             </ro-button-raised>
@@ -56,7 +69,7 @@
                         <ng-container *ngIf="getStatusEmail(email) === 'Error'">
                             <ro-button-raised
                                 color="warn"
-                                (click)="editaruser(employee)"
+                                (click)="removeEmail(email)"
                             >
                                 Eliminar
                             </ro-button-raised>
@@ -64,6 +77,11 @@
                     </div>
                 </td>
             </tr>
-        </table>        
+        </table>
+        <ng-template #blockSppiner>
+            <div class="w-full flex justify-center">
+                <mat-spinner [diameter]="30"></mat-spinner>
+            </div>
+        </ng-template>
     </section>
 </section>

@@ -71,5 +71,20 @@ export class AuthService {
     );
   }
 
+  removeEmail(email, messageId) : Observable<any> {
+    return this.http.delete<any>(environment.uri + `/api/Email/Gmail/inbox/${email}/message/${messageId}/delete`)
+    .pipe(
+      map( res => res )
+    );
+  }
+
+  analizeEmail(body) : Observable<any> {
+    return this.http.post<any>(environment.uri + `/api/Analyze/diagnostics/phishing`, body)
+    .pipe(
+      map( res => res )
+    );
+  }
+
+
 
 }
