@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
   socialUser: any;
   tabSelected: number = 0;
+  showSpinner = false;
+  showSpinnerGoogle = false;
   constructor(
     private authService: AuthService,
     private readonly store: Store<any>,
@@ -100,18 +102,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  
-
-  login(){
-    
-  }
-  
-
-
   signOut(): void {
     // this.socialAuthService.signOut();
   }
   onFormSubmit(){
+    this.showSpinner = true;
     const body = this.form.value;
     this.authService.login(body).pipe(
       filter( resp => resp.isSuccess === true),
@@ -119,16 +114,19 @@ export class LoginComponent implements OnInit {
       catchError(() => {
         this.openModalError({
           type: 'error',
-          message: 'Credencailes incorrectas'
+          message: 'Vuelve a intentarlo'
         });
+        this.showSpinnerGoogle = false;
         return EMPTY;
       })
     ).subscribe(data => {
       this.authService.setSesionStorage('dataUser', JSON.stringify(data));
       if(data.roleName === 'Administrador'){
         this.router.navigateByUrl('admin');
+        this.showSpinner = false
       } else{
         this.router.navigateByUrl('investigador');
+        this.showSpinner = false
       }
     });
   }
@@ -148,7 +146,7 @@ export class LoginComponent implements OnInit {
   }
   
   loginWithGoogle() {
-    console.log("formGoogle", this.formGoogle.valid)
+    this.showSpinnerGoogle = true;
     if(!this.formGoogle.valid){
       this.openModalError({type : 'error', message: 'Acepta los términos y condiciones'})
     } else {
@@ -160,10 +158,12 @@ export class LoginComponent implements OnInit {
           type: 'error',
           message: 'Credencailes incorrectas'
         });
+        this.showSpinnerGoogle = false;
         return EMPTY;
       })
       ).subscribe(resp => {
         let reference = window.open(resp, "_parent", '');
+        this.showSpinnerGoogle = false;
       });
     }
     

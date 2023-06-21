@@ -39,13 +39,7 @@ export class MainComponent implements OnInit {
       })
     ).subscribe(resp => {
       this.dataEmails=resp;
-      this.dataEmails[0].isAnalyzed = true;
-      this.dataEmails[0].isPhishing = true;
-      // this.dataEmails[0].isDeletedMessage = true;
-      this.dataEmails[1].isAnalyzed = true;
-      this.dataEmails[1].isPhishing = false;
       this.showSpinner = true;
-      console.log("this.dataEmails", this.dataEmails)
     });
   }
 
@@ -62,7 +56,6 @@ export class MainComponent implements OnInit {
   getStatusEmail(email){
     const status = ['Success','Warning', 'Error', 'Delete'];
     if(email && !email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
-      console.log("status[1]")
       return status[1];
     } else if(email && email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
       return status[0];

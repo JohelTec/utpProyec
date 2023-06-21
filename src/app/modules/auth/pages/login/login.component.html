@@ -32,44 +32,58 @@
                             </ro-input>
                         </div>
                         <div>
-                            <ro-button-raised
-                                color = 'primary'
-                                class = "w-full"
-                                type="submit"
-                                [disabled]="!form.valid"
-                                
-                            >   
-                                <div class="text-lg p-1">
-                                    Ingresar
+                            <ng-container *ngIf="!showSpinner; else spinnerBlockLogin">
+                                <ro-button-raised
+                                    color = 'primary'
+                                    class = "w-full"
+                                    type="submit"
+                                    [disabled]="!form.valid"
+                                    
+                                >   
+                                    <div class="text-lg p-1">
+                                        Ingresar
+                                    </div>
+                                </ro-button-raised>
+                            </ng-container>
+                            <ng-template #spinnerBlockLogin>
+                                <div class="w-full flex justify-center py-3">
+                                    <mat-spinner [diameter]="30"></mat-spinner>
                                 </div>
-                            </ro-button-raised>
+                            </ng-template>
                         </div>
                     </section>
                 </form>
             </mat-tab>
             <mat-tab label="Usuarios">
                 <form [formGroup]="formGoogle" class="w-full text-sm">
-                    <div class=" py-4">
-                        <div
-                            class = "w-full login__btnGoogle"
-                            (click)="loginWithGoogle()"
-                        >   
-                            <div class="text-lg p-3 flex justify-center items-center ro-font-white">
-                                Continuar con  &nbsp;
-                                <span class="text-lg font-semibold mr-2">
-                                    Google
-                                </span> 
+                    <ng-container *ngIf="!showSpinnerGoogle; else spinnerBlockGoogle">
+                        <div class=" py-4">
+                            <div
+                                class = "w-full login__btnGoogle"
+                                (click)="loginWithGoogle()"
+                            >   
+                                <div class="text-lg p-3 flex justify-center items-center ro-font-white">
+                                    Continuar con  &nbsp;
+                                    <span class="text-lg font-semibold mr-2">
+                                        Google
+                                    </span> 
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex justify-center flex-col items-center pt-2 w-full">
-                            <div>
-                                <ro-checkbox color="primary"  controlName="acceptTandC"  [class.custom-color-primary]="!formGoogle.get('acceptTandC').valid && formGoogle.get('acceptTandC').touched">Acepto los TyC y las políticas de privacidad</ro-checkbox>
-                                <mat-error class="text-xs font-medium" *ngIf="!formGoogle.get('acceptTandC').valid && formGoogle.get('acceptTandC').touched">Aceptar términos y condiciones</mat-error>
+                            <div class="flex justify-center flex-col items-center pt-2 w-full">
+                                <div>
+                                    <ro-checkbox color="primary"  controlName="acceptTandC"  [class.custom-color-primary]="!formGoogle.get('acceptTandC').valid && formGoogle.get('acceptTandC').touched">Acepto los TyC y las políticas de privacidad</ro-checkbox>
+                                    <mat-error class="text-xs font-medium" *ngIf="!formGoogle.get('acceptTandC').valid && formGoogle.get('acceptTandC').touched">Aceptar términos y condiciones</mat-error>
+                                </div>
+                                
                             </div>
                             
                         </div>
-                        
-                    </div>
+                    </ng-container>
+                    <ng-template #spinnerBlockGoogle>
+                        <div class="w-full flex justify-center py-3">
+                            <mat-spinner color="warn" [diameter]="30"></mat-spinner>
+                        </div>
+                    </ng-template>
                 </form>
             </mat-tab>
         </mat-tab-group>
