@@ -66,24 +66,31 @@
                     </ro-button-flat>
                 </div>
             </form>
-            <div class="h-full pt-3">
-                <ro-button-flat
-                    class="mainResearchers__buttonExcel"
-                    color="accent"
-                    (click)="exportExcel()"
-                >   
-                    <div class="text-sm px-6 py-2 flex items-center">
-                        <span class="mr-2">
-                            <mat-icon 
-                                [inline]="true" 
-                                class="lastDepartaments__icon-user"
-                            >
-                                cloud_download
-                            </mat-icon>
-                        </span>
-                        Exportar
+            <div class="h-full pt-3  w-40">
+                <ng-container *ngIf="!spinnerReport; else spinnerExportExcel">
+                    <ro-button-flat
+                        class="mainResearchers__buttonExcel"
+                        color="accent"
+                        (click)="exportExcel()"
+                    >   
+                        <div class="text-sm px-6 py-2 flex items-center">
+                            <span class="mr-2">
+                                <mat-icon 
+                                    [inline]="true" 
+                                    class="lastDepartaments__icon-user"
+                                >
+                                    cloud_download
+                                </mat-icon>
+                            </span>
+                            Exportar
+                        </div>
+                    </ro-button-flat>
+                </ng-container>
+                <ng-template #spinnerExportExcel>
+                    <div class="w-full flex justify-center py-3 ">
+                        <mat-spinner color="primary" [diameter]="30"></mat-spinner>
                     </div>
-                </ro-button-flat>
+                </ng-template>
             </div>
             
         </section>
@@ -95,6 +102,7 @@
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Receptor</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Asunto</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Mensaje</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Fecha</th>
             </tr>
             <tr class="mainResearchers__cellpace" *ngFor="let email of dataReport">
                 <td class="p-2">{{ email.historyId }}</td>
@@ -102,6 +110,7 @@
                 <td class="p-2">{{ email.to }}</td>
                 <td class="p-2">{{ email.subject }}</td>
                 <td class="p-2">{{ email.snippet }}</td>
+                <td class="p-2">{{ email.dateMessage }}</td>
             </tr>
         </table>        
     </section>

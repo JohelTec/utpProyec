@@ -24,7 +24,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.userService.isLoading.next(true);
-    console.log("aqui maki")
     const token: string = this.authService.getSesionStorage('token');
     let req = request;
 

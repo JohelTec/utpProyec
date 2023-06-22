@@ -137,7 +137,6 @@ export class DetailUserComponent implements OnInit {
         message: 'Se agregado el empleado'
       })
     })
-    console.log(' this.formAddUser.value',  this.formAddUser.value)
   }
 
   resquestEdit(){

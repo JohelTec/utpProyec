@@ -39,7 +39,6 @@ export class MainComponent implements OnInit {
     this.router.navigateByUrl('admin/detailuser');
   }
   editaruser(formValue) {
-    console.log("formValue", formValue)
     this.router.navigate(['admin/edituser', formValue ]);
   }
 

@@ -41,10 +41,7 @@ export class LoginComponent implements OnInit {
   listenigLogin(){
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); // { orderby: "price" }
-        console.log(params.code); // price
         if(params && params.code){
-          console.log("params.code",params.code)
           this.getOuthToken(params.code);
         }
       }
@@ -63,25 +60,8 @@ export class LoginComponent implements OnInit {
         return EMPTY;
       })
     ).subscribe(resp => {
-      // this.initSession();
       this.authService.setSesionStorage('dataUser', JSON.stringify(resp))
       this.router.navigateByUrl('user')
-    });
-  }
-
-  initSession(){
-    this.authService.getEmails('uexternalapp@gmail.com', 10).pipe(
-      filter( resp => resp.isSuccess),
-      map( resp => resp.data ),
-      catchError(() => {
-        this.openModalError({
-          type: 'error',
-          message: 'Credencailes incorrectas'
-        });
-        return EMPTY;
-      })
-    ).subscribe(resp => {
-      console.log("initSession", resp)
     });
   }
 
@@ -102,9 +82,6 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  signOut(): void {
-    // this.socialAuthService.signOut();
-  }
   onFormSubmit(){
     this.showSpinner = true;
     const body = this.form.value;
@@ -129,10 +106,6 @@ export class LoginComponent implements OnInit {
         this.showSpinner = false
       }
     });
-  }
-
-  onFormSubmitformGoogle(){
-    console.log("formGoogle", this.formGoogle.value)
   }
 
   openModalError({type, message}): void {

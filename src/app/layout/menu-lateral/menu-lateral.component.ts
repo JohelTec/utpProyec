@@ -37,7 +37,6 @@ export class MenuLateralComponent implements OnInit {
       if(this.user && this.user.roleName && this.user.roleName === 'Administrador') this.rol = 1;
       else{
         if(this.user && this.user.refresh_token){
-          console.log("this.user.refresh_token")
           this.rol = 3
         }else {
           this.rol = 2
