@@ -15,7 +15,7 @@ export class PublicGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.getSesionStorage('dataUser')) {
-      if(JSON.parse(this.authService.getSesionStorage('dataUser')).roleName ==='Administrador'){
+      if(JSON.parse(this.authService.getSesionStorage('dataUser')).roleName.toUpperCase() === 'ADMINISTRADOR' || JSON.parse(this.authService.getSesionStorage('dataUser')).roleName.toUpperCase() === 'SUPERVISOR'){
         return this.router.navigateByUrl('/admin').then(() => false);
       }else {
         return this.router.navigateByUrl('/investigador').then(() => false);

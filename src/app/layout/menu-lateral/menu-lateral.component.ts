@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { rols } from './menu-lateral.constant';
 import { AuthService } from '@app/shared/services/auth.service';
 
 interface user {
@@ -34,7 +33,7 @@ export class MenuLateralComponent implements OnInit {
     const dataUser = this.authService.getSesionStorage('dataUser');
     if(dataUser !== null){
       this.user = JSON.parse(dataUser);
-      if(this.user && this.user.roleName && this.user.roleName === 'Administrador') this.rol = 1;
+      if(this.user && this.user.roleName && (this.user.roleName.toUpperCase() === 'ADMINISTRADOR' || this.user.roleName.toUpperCase() === 'SUPERVISOR')) this.rol = 1;
       else{
         if(this.user && this.user.refresh_token){
           this.rol = 3

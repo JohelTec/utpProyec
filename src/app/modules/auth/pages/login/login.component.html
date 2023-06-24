@@ -1,9 +1,8 @@
-<main class="login container m-auto flex justify-center h-full items-center">
+<main class="login m-auto flex justify-center h-full items-center m-0">
     <section class="login__container">
         <div class="mb-8 text-base font-semibold">
             SRFSMS - Login
         </div>
-        
         <mat-tab-group animationDuration="0ms" class="w-full" mat-stretch-tabs="false" [color]="'primary'" >
             <mat-tab label="Administrador/Investigador">
                 <form [formGroup]="form" class="w-full text-sm" (ngSubmit)="onFormSubmit()">

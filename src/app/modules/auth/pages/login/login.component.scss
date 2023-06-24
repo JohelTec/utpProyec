@@ -1,11 +1,16 @@
 @import "variables.scss";
 
 .login{
+    background-image: url("../../../../../assets/image_fondo/fondo_login_1.png");
     &__container{
+        background-color: #fff;
         display: grid;
         justify-items: center;
         align-items: center;
-        width: 400px;
+        // width: 400px;
+        border-radius: 10px;
+        padding: 55px;
+        box-shadow: 2px 1px 23px -1px #bbb7b76e
     }
     &__btnGoogle{
         cursor: pointer;

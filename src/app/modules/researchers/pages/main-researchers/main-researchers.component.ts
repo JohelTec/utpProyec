@@ -109,12 +109,16 @@ export class MainResearchersComponent implements OnInit {
       {
         sheet: "Casos reportados",
         columns: [
-          { label: "Código", value: "codigo" }, // Top level data
           { label: "Emisor", value: "emisor" }, // Top level data
           { label: "Receptor", value: "receptor" }, // Top level data
           { label: "Asunto", value: "asunto" }, // Top level data
           { label: "Mensaje", value: "mensaje" }, // Top level 
           { label: "Fecha", value: "fecha" }, // Top level data
+          { label: "Estado", value: "estado" }, // Top level 
+          { label: "Porcentaje", value: "porcentaje" }, // Top level data
+          { label: "Fecha de análisis", value: "fechaDeAnalisis" }, // Top level data
+          { label: "Ejecutivo", value: "ejecutivo" }, // Top level 
+          { label: "Correo", value: "correo" }, // Top level data
         ],
         content: this.dataReport.map( item => {
             return {
@@ -124,6 +128,11 @@ export class MainResearchersComponent implements OnInit {
               asunto: item.subject,
               mensaje: item.snippet,
               fecha: item.dateMessage,
+              estado: this.getStatusEmailName(item),
+              porcentaje: item.score,
+              fechaDeAnalisis: item.dateAnalyzed,
+              ejecutivo: item.bankingExecutive_Name,
+              correo: item.bankingExecutive_Email,
             }
         })
       },
@@ -138,6 +147,44 @@ export class MainResearchersComponent implements OnInit {
     xlsx(resportDataExcel, this.settings, callback)
   }
 
+  getStatusEmail(email){
+    const status = ['Success','Warning', 'Error', 'Delete'];
+    if(email && !email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
+      return status[1];
+    } else if(email && email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
+      return status[0];
+    } else if(email.isDeletedMessage){
+      return status[3];
+    } else {
+      return status[2];
+    }
+  }
+
+  getStatusEmailName(email){
+    const status = ['Leible','Pendiente', 'Phishing', 'Eliminado'];
+    if(email && !email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
+      return status[1];
+    } else if(email && email.isAnalyzed && !email.isPhishing && !email.isDeletedMessage){
+      return status[0];
+    } else if(email.isDeletedMessage){
+      return status[3];
+    } else {
+      return status[2];
+    }
+  }
+
+  getRol(){
+    const dataUser = this.authService.getSesionStorage('dataUser');
+    if(dataUser !== null){
+      let user = JSON.parse(dataUser);
+      if(user && user.roleName && (user.roleName.toUpperCase() === 'ADMINISTRADOR' || user.roleName.toUpperCase() === 'SUPERVISOR')) {
+        return true;
+      }
+      else{
+        return false;
+      };
+    }
+  }
 
 
 

@@ -10,6 +10,7 @@ import { filter, map, catchError  } from 'rxjs/operators';
 import { EMPTY, of, throwError } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { modalErrorComponent } from '@modals/error/modal.error.component';
+import { UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -89,16 +90,18 @@ export class LoginComponent implements OnInit {
       filter( resp => resp.isSuccess === true),
       map( resp => resp.data ),
       catchError(() => {
+        this.showSpinner = false;
         this.openModalError({
           type: 'error',
           message: 'Vuelve a intentarlo'
         });
-        this.showSpinnerGoogle = false;
+        
         return EMPTY;
       })
     ).subscribe(data => {
       this.authService.setSesionStorage('dataUser', JSON.stringify(data));
-      if(data.roleName === 'Administrador'){
+      console.log("UpperCasePipe.arguments(data.roleName)", data.roleName.toUpperCase())
+      if(data && (data.roleName.toUpperCase() === 'ADMINISTRADOR' || data.roleName.toUpperCase() === 'SUPERVISOR') ){
         this.router.navigateByUrl('admin');
         this.showSpinner = false
       } else{
@@ -119,10 +122,10 @@ export class LoginComponent implements OnInit {
   }
   
   loginWithGoogle() {
-    this.showSpinnerGoogle = true;
     if(!this.formGoogle.valid){
       this.openModalError({type : 'error', message: 'Acepta los términos y condiciones'})
     } else {
+      this.showSpinnerGoogle = true;
       this.authService.outh2().pipe(
       filter( resp => resp.isSuccess === true),
       map( resp => resp.data ),

@@ -5,30 +5,6 @@
         </div>
         <section class="flex justify-between w-full mb-5 items-start">
             <form [formGroup]="formfilter" (ngSubmit)="onFormSubmit()" class="flex" >
-                <!-- <div class="login__input m-2 text-sm">
-                    <ro-input
-                        class="ro-input w-full text-sm"
-                        floatLabel="always"
-                        label="Desde"
-                        appearance="outline"
-                        controlName="from" 
-                        type="date"
-                        maxlength="150"
-                    >
-                    </ro-input>
-                </div>
-                <div class="login__input m-2 text-sm">
-                    <ro-input
-                        class="ro-input w-full text-sm"
-                        floatLabel="always"
-                        label="Hasta"
-                        appearance="outline"
-                        controlName="to" 
-                        type="date"
-                        maxlength="150"
-                    >
-                    </ro-input>
-                </div> -->
                 <div class="login__input m-2 text-sm">
                     <mat-form-field appearance="outline" floatLabel="always">
                         <mat-label>Rango de fechas</mat-label>
@@ -36,7 +12,7 @@
                           <input matStartDate formControlName="from" placeholder="Start date">
                           <input matEndDate formControlName="to" placeholder="End date">
                         </mat-date-range-input>
-                        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+                        <!-- <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint> -->
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-date-range-picker #picker></mat-date-range-picker>
     
@@ -97,20 +73,64 @@
         
         <table class="w-full">
             <tr class="">
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Código</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Emisor</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Receptor</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Asunto</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Mensaje</th>
                 <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Fecha</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Estado</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Porcentaje</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Fecha de análisis</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2" *ngIf="getRol()">Ejecutivo</th>
+                <th class="text-left mainResearchers__cellpace ro-font-blue p-2" *ngIf="getRol()">Correo</th>
             </tr>
             <tr class="mainResearchers__cellpace" *ngFor="let email of dataReport">
-                <td class="p-2">{{ email.historyId }}</td>
                 <td class="p-2">{{ email.from }}</td>
                 <td class="p-2">{{ email.to }}</td>
                 <td class="p-2">{{ email.subject }}</td>
                 <td class="p-2">{{ email.snippet }}</td>
                 <td class="p-2">{{ email.dateMessage }}</td>
+                <td class="p-2">
+                    <div class=" text-2xl rounded-full mainResearchers__color{{ getStatusEmail(email) }}" [ngSwitch]="getStatusEmail(email)">
+                        <mat-icon
+                            [inline]="true"
+                            *ngSwitchCase="'Success'"
+                            class="cursor-pointer"
+                            matTooltip="Leible"
+                        >
+                            check_circle
+                        </mat-icon> 
+                        <mat-icon
+                            [inline]="true"
+                            *ngSwitchCase="'Warning'"
+                            class="cursor-pointer"
+                            matTooltip="Pendiente"
+                        >
+                            error
+                        </mat-icon> 
+                        <mat-icon
+                            [inline]="true"
+                            *ngSwitchCase="'Error'"
+                            class="cursor-pointer"
+                            matTooltip="Phishing"
+                        >
+                            cancel
+                        </mat-icon> 
+                        <mat-icon
+                            class="cursor-pointer"
+                            [inline]="true"
+                            *ngSwitchCase="'Delete'"
+                            matTooltip="Eliminado"
+                        >
+                            error
+                        </mat-icon>
+                        
+                    </div>
+                </td>
+                <td class="p-2">{{ email.score }}</td>
+                <td class="p-2">{{ email.dateAnalyzed }}</td>
+                <td class="p-2" *ngIf="getRol()">{{ email.bankingExecutive_Name  }}</td>
+                <td class="p-2" *ngIf="getRol()">{{ email.bankingExecutive_Email }}</td>
             </tr>
         </table>        
     </section>
