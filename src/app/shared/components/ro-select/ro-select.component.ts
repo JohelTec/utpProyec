@@ -32,14 +32,7 @@ export class RoSelectComponent implements OnInit {
   
   selectedValue: string;
   selectedCar: string;
-  // selected: any = "option1";
 
-  // foods  = [
-  //   {key: 'steak0', value: 'Casas de playa /Campo'},
-  //   {key: 'pizza1', value: 'Departamento completo'},
-  //   {key: 'tacos2', value: 'Habitación independiente'},
-  //   {key: 'tacos3', value: 'Minidepartamento'},
-  // ];
 
   ngOnInit() {
   }

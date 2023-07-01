@@ -2,7 +2,7 @@
 
 .mainResearchers{
     &__cellpace{
-        border-bottom: 2px solid $blue;
+        border-bottom: 2px solid #e4e4e4;
     }
     &__buttonExcel{
         background-color: #02723b;
@@ -19,4 +19,11 @@
     &__colorDelete{
         color: #f70000;
     }
+    &__table{
+        border: 2px solid #e4e4e4;
+        border-radius: 10px;
+    }
+}
+tr:nth-child(even) {
+    background-color: #03a9f40f;
 }

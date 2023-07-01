@@ -100,7 +100,6 @@ export class LoginComponent implements OnInit {
       })
     ).subscribe(data => {
       this.authService.setSesionStorage('dataUser', JSON.stringify(data));
-      console.log("UpperCasePipe.arguments(data.roleName)", data.roleName.toUpperCase())
       if(data && (data.roleName.toUpperCase() === 'ADMINISTRADOR' || data.roleName.toUpperCase() === 'SUPERVISOR') ){
         this.router.navigateByUrl('admin');
         this.showSpinner = false

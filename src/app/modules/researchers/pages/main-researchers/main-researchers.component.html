@@ -1,5 +1,5 @@
-<section class="mainResearchers w-full flex justify-center items-center flex-col h-full">
-    <section class="w-3/4">
+<section class="mainResearchers w-full flex justify-center items-center h-full">
+    <section class="w-3/4 ">
         <div class="text-center mb-8 text-2xl font-bold">
             CASOS REPORTADOS
         </div>
@@ -71,18 +71,18 @@
             
         </section>
         
-        <table class="w-full">
+        <table class="w-full mainResearchers__table">
             <tr class="">
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Emisor</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Receptor</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Asunto</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Mensaje</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Fecha</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Estado</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Porcentaje</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2">Fecha de análisis</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2" *ngIf="getRol()">Ejecutivo</th>
-                <th class="text-left mainResearchers__cellpace ro-font-blue p-2" *ngIf="getRol()">Correo</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Emisor</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Receptor</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Asunto</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Mensaje</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Fecha</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Estado</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Porcentaje</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2">Fecha de análisis</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2" *ngIf="getRol()">Ejecutivo</th>
+                <th class="text-left mainResearchers__cellpace ro-font-black p-2" *ngIf="getRol()">Correo</th>
             </tr>
             <tr class="mainResearchers__cellpace" *ngFor="let email of dataReport">
                 <td class="p-2">{{ email.from }}</td>
@@ -114,7 +114,7 @@
                             class="cursor-pointer"
                             matTooltip="Phishing"
                         >
-                            cancel
+                            bug_report
                         </mat-icon> 
                         <mat-icon
                             class="cursor-pointer"

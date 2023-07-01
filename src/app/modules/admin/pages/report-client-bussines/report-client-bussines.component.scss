@@ -2,6 +2,13 @@
 
 .reportClientBussines{
     &__cellpace{
-        border-bottom: 2px solid $blue;
+        border-bottom: 2px solid #e4e4e4;
     }
+    &__table{
+        border: 2px solid #e4e4e4;
+        border-radius: 10px;
+    }
+}
+tr:nth-child(even) {
+    background-color: #03a9f40f;
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  uri:'https://pi2srfsmsapp.azurewebsites.net',
+  uri:'https://pi2devsrfsmsapp.azurewebsites.net',
+  
 };
 
 /*

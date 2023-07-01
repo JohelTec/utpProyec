@@ -1,15 +1,15 @@
-<section class="reportClientBussiness w-full flex justify-center items-center flex-col h-full">
+<section class="reportClientBussines w-full flex justify-center items-center flex-col h-full">
     <form [formGroup]="formAddReportClient" (ngSubmit)="onFormSubmit()" class="w-3/4">
         <div class="text-center mb-8 text-2xl font-bold">
             OPCIONES DE ROL
         </div>
-        <table class="w-full">
+        <table class="w-full reportClientBussines__table">
             <tr class="">
-                <th class="text-left reportClientBussines__cellpace ro-font-blue">Rol</th>
-                <th class="text-left reportClientBussines__cellpace ro-font-blue text-center">Acción</th>
+                <th class="text-left reportClientBussines__cellpace ro-font-black p-2">Rol</th>
+                <th class="text-left reportClientBussines__cellpace ro-font-black text-center p-2">Acción</th>
             </tr>
             <tr class="reportClientBussines__cellpace" *ngFor="let rol of listRoles">
-                <td class="">
+                <td class="p-2">
                     <div *ngIf="idInputEdit === rol.id ; else templateA" class="py-3">
                         <ro-input
                             class="w-full text-sm"
@@ -25,7 +25,7 @@
                         {{ rol.name }}
                     </ng-template>
                 </td>
-                <td class=" text-base flex justify-center items-center ro-font-blue ">
+                <td class=" text-base flex justify-center items-center ro-font-blue p-2">
                     <div class="flex flex-row h-full">
                         <div class="mr-2 cursor-pointer">
                             <mat-icon 

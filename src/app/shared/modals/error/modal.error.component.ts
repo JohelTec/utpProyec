@@ -36,10 +36,7 @@ export class modalErrorComponent implements OnInit {
     constructor(
       public dialogRef: MatDialogRef<modalErrorComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
-    ) {}
-
-    // @Input() controlName:string;
-    // @Input() position:string = 'after';
+    ) {};
     
     ngOnInit() {
       const textIcon : any = this.listTextIcon.find(item => item.name === this.data.type);
